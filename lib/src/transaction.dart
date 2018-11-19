@@ -119,9 +119,6 @@ class FinalizedTransaction {
 	/// state of the Blockchain. The data returned by the called contract will
 	/// be returned here immediately as well.
 	Future<List<dynamic>> call(Web3Client client, {int chainId = 1}) {
-		if (!isConst)
-			throw new Exception("Tried to call a transaction that modifys state");
-
 		return _asRaw(client).then((raw) {
 			return client.call(base._keys, raw, _function, chainId: chainId);
 		});
